@@ -6,7 +6,7 @@ resource "aws_alb" "dashboard_alb" {
   subnets            = data.aws_subnet_ids.selected.ids
 
   tags = {
-    Environment = "Dev"
+    Environment = "${terraform.workspace}-dev-dashboard"
   }
 }
 
@@ -18,7 +18,7 @@ resource "aws_alb_target_group" "dashboard_target_group" {
   health_check {
     port     = 8080
     protocol = "HTTP"
-    path = "/CrudDemoWithMySql/"
+    path     = "/CrudDemoWithMySql/"
   }
 }
 

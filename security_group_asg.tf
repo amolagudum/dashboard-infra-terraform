@@ -4,20 +4,29 @@ resource "aws_security_group" "allow_http_asg" {
 
   ingress {
     #http
-    from_port         = 8080
-    to_port           = 8080
-    protocol          = "TCP"
+    from_port       = 8080
+    to_port         = 8080
+    protocol        = "TCP"
     security_groups = [aws_security_group.allow_http.id]
-    description       = "allow http inbound"
+    description     = "allow http inbound"
   }
-  
+
   ingress {
     #http
-    from_port         = 3306
-    to_port           = 3306
-    protocol          = "TCP"
-    security_groups  = ["sg-00ad69f4112659dec"]
-    description       = "allow RDS inbound"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "TCP"
+    security_groups = ["sg-00ad69f4112659dec"]
+    description     = "allow RDS inbound"
+  }
+
+  ingress {
+    #http
+    from_port   = 22
+    to_port     = 22
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "allow http inbound"
   }
 
   egress {

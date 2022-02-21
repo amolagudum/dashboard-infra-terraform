@@ -10,7 +10,7 @@ resource "aws_launch_template" "dashboard_asg_template" {
   tag_specifications {
     resource_type = "instance"
     tags = {
-      Name = "emp-dashboard"
+      Name = "${terraform.workspace}_dev_dashboard"
     }
   }
 
